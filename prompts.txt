@@ -1,0 +1,43 @@
+Prompt 1:
+"Explícame de forma sencilla cómo estructurar un sistema de inventario en Java usando arquitectura por capas (Entidades, DAO, Lógica de Negocio y Presentación). Incluye ejemplos simples de qué hace cada capa y cómo se comunican entre sí. No me des código completo, solo explicación clara."
+
+Prompt 2:
+"Ayúdame a diseñar la estructura de paquetes para un proyecto Java en NetBeans usando arquitectura por capas. Quiero separar en paquetes: entidades, accesoDatos (DAO), logicaNegocio y presentacion. Dime qué clases debería crear en cada paquete."
+
+Prompt 3:
+"Genera la clase Producto en Java con atributos id, nombre, cantidad y precio, con encapsulamiento, constructor y toString()."
+
+Prompt 4:
+"Agrega validaciones básicas a la clase Producto: cantidad no negativa y precio mayor a 0."
+
+Prompt 5:
+"Explícame cómo implementar persistencia en archivos .txt en Java para guardar objetos tipo Producto como base de datos simple."
+
+Prompt 6:
+"Genera una interfaz ProductoDAO con métodos CRUD: guardar, listar, buscarPorId, actualizar, eliminar."
+
+Prompt 7:
+"Genera una implementación ProductoDAOImpl que use archivos .txt para persistencia y explique cada método."
+
+Prompt 8:
+"Genera una clase ProductoService que use ProductoDAO para lógica de negocio sin acceder directamente a archivos."
+
+Prompt 9:
+"Genera un menú en consola en Java con opciones CRUD que use la capa de lógica de negocio."
+
+Prompt 10:
+"Explícame el flujo completo del sistema desde el menú hasta la persistencia en archivo."
+
+Prompt 11:
+"Dame ideas de validaciones para mejorar un sistema de inventario en Java."
+
+Prompt 12:
+"Ayúdame a redactar un manual de usuario para un sistema de inventario en Java con descripción, ejecución, menú y ejemplos."
+
+Prompt 13:
+"Ayúdame a redactar un manual técnico explicando arquitectura, clases, flujo y decisiones."
+
+
+Prompt 14:
+"Actúa como profesor y revisa si mi sistema cumple con arquitectura por capas, CRUD, persistencia, documentación y uso correcto de IA."
+
