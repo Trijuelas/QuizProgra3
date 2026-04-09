@@ -72,4 +72,49 @@ public class ProductoDAOImpl implements ProductoDAO {
 
         return null;
     }
+
+    @Override
+    public boolean actualizarProducto(Producto productoActualizado) {
+        List<Producto> productos = listarProductos();
+        boolean encontrado = false;
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))) {
+            for (Producto producto : productos) {
+                if (producto.getId() == productoActualizado.getId()) {
+                    writer.write(productoActualizado.toFileString());
+                    encontrado = true;
+                } else {
+                    writer.write(producto.toFileString());
+                }
+                writer.newLine();
+            }
+
+            return encontrado;
+        } catch (Exception e) {
+            System.out.println("Error al actualizar producto: " + e.getMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public boolean eliminarProducto(int id) {
+        List<Producto> productos = listarProductos();
+        boolean eliminado = false;
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))) {
+            for (Producto producto : productos) {
+                if (producto.getId() != id) {
+                    writer.write(producto.toFileString());
+                    writer.newLine();
+                } else {
+                    eliminado = true;
+                }
+            }
+
+            return eliminado;
+        } catch (Exception e) {
+            System.out.println("Error al eliminar producto: " + e.getMessage());
+            return false;
+        }
+    }
 }

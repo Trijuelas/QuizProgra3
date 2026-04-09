@@ -10,4 +10,8 @@ public interface ProductoDAO {
     List<Producto> listarProductos();
 
     Producto buscarProductoPorId(int id);
+
+    boolean actualizarProducto(Producto producto);
+
+    boolean eliminarProducto(int id);
 }
