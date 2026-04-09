@@ -4,6 +4,7 @@ import LogicaNegocio.ProductoService;
 import dao.ProductoDAO;
 import dao.ProductoDAOImpl;
 import entidades.Producto;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,9 +24,7 @@ public class Main {
             System.out.println("4. Actualizar producto");
             System.out.println("5. Eliminar producto");
             System.out.println("0. Salir");
-            System.out.print("Seleccione una opcion: ");
-            opcion = scanner.nextInt();
-            scanner.nextLine();
+            opcion = leerEntero(scanner, "Seleccione una opcion: ");
 
             switch (opcion) {
                 case 1:
@@ -55,18 +54,11 @@ public class Main {
     }
 
     public static void registrarProducto(Scanner scanner, ProductoService productoService) {
-        System.out.print("Ingrese ID: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
-
+        int id = leerEntero(scanner, "Ingrese ID: ");
         System.out.print("Ingrese nombre: ");
         String nombre = scanner.nextLine();
-
-        System.out.print("Ingrese cantidad: ");
-        int cantidad = scanner.nextInt();
-
-        System.out.print("Ingrese precio: ");
-        double precio = scanner.nextDouble();
+        int cantidad = leerEntero(scanner, "Ingrese cantidad: ");
+        double precio = leerDouble(scanner, "Ingrese precio: ");
 
         Producto producto = new Producto(id, nombre, cantidad, precio);
 
@@ -92,8 +84,7 @@ public class Main {
     }
 
     public static void buscarProducto(Scanner scanner, ProductoService productoService) {
-        System.out.print("Ingrese ID del producto: ");
-        int id = scanner.nextInt();
+        int id = leerEntero(scanner, "Ingrese ID del producto: ");
 
         Producto producto = productoService.buscarProductoPorId(id);
         if (producto != null) {
@@ -105,18 +96,11 @@ public class Main {
     }
 
     public static void actualizarProducto(Scanner scanner, ProductoService productoService) {
-        System.out.print("Ingrese ID del producto a actualizar: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
-
+        int id = leerEntero(scanner, "Ingrese ID del producto a actualizar: ");
         System.out.print("Ingrese nuevo nombre: ");
         String nombre = scanner.nextLine();
-
-        System.out.print("Ingrese nueva cantidad: ");
-        int cantidad = scanner.nextInt();
-
-        System.out.print("Ingrese nuevo precio: ");
-        double precio = scanner.nextDouble();
+        int cantidad = leerEntero(scanner, "Ingrese nueva cantidad: ");
+        double precio = leerDouble(scanner, "Ingrese nuevo precio: ");
 
         Producto producto = new Producto(id, nombre, cantidad, precio);
         if (productoService.actualizarProducto(producto)) {
@@ -127,13 +111,40 @@ public class Main {
     }
 
     public static void eliminarProducto(Scanner scanner, ProductoService productoService) {
-        System.out.print("Ingrese ID del producto a eliminar: ");
-        int id = scanner.nextInt();
+        int id = leerEntero(scanner, "Ingrese ID del producto a eliminar: ");
 
         if (productoService.eliminarProducto(id)) {
             System.out.println("Producto eliminado correctamente.");
         } else {
             System.out.println("No se pudo eliminar el producto.");
+        }
+    }
+
+    private static int leerEntero(Scanner scanner, String mensaje) {
+        while (true) {
+            System.out.print(mensaje);
+            try {
+                int valor = scanner.nextInt();
+                scanner.nextLine();
+                return valor;
+            } catch (InputMismatchException e) {
+                System.out.println("Ingrese un numero entero valido.");
+                scanner.nextLine();
+            }
+        }
+    }
+
+    private static double leerDouble(Scanner scanner, String mensaje) {
+        while (true) {
+            System.out.print(mensaje);
+            try {
+                double valor = scanner.nextDouble();
+                scanner.nextLine();
+                return valor;
+            } catch (InputMismatchException e) {
+                System.out.println("Ingrese un numero decimal valido.");
+                scanner.nextLine();
+            }
         }
     }
 }
