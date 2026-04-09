@@ -49,13 +49,15 @@ public class Producto {
         this.precio = precio;
     }
 
+    public String toFileString() {
+        return id + ";" + nombre + ";" + cantidad + ";" + precio;
+    }
+
     @Override
     public String toString() {
-        return "Producto{"
-                + "id=" + id
-                + ", nombre='" + nombre + '\''
-                + ", cantidad=" + cantidad
-                + ", precio=" + precio
-                + '}';
+        return "ID: " + id
+                + " | Nombre: " + nombre
+                + " | Cantidad: " + cantidad
+                + " | Precio: " + precio;
     }
 }
